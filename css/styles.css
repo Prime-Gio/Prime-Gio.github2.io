@@ -1,0 +1,149 @@
+header, nav, main, footer { display: block; }
+* { box-sizing: border-box; }
+body { background-color: #F5F7FA;
+       font-family: Verdana, Arial, sans-serif;
+       background-image:url(../images/Hotel_Entrance.png);
+       background-repeat: no-repeat;
+       background-size: cover;
+       background-attachment: fixed;
+       margin: 0;
+}
+#wrapper { max-width: 960px;
+       width: 90%;
+       margin-left: auto;
+       margin-right: auto;
+       background-color: #FFFFFF;
+       color: #1F3D7A;
+       box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
+       border-radius: 6px ;
+}
+h1 {   background-image: url('../images/Logo.png');
+       background-size: 210px 200px;
+       background-repeat: no-repeat;
+       background-position: left center;
+       padding-left: 200px;
+       padding-top: 25px;
+       background-color: #FFFFFF;
+	height: 100px;
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: 2.5em;
+       text-align: center;
+       margin-bottom: 0;
+	text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
+       color: #1F307A;
+
+}
+p {
+font-size: 14px;
+}
+input[type="text"], input[type="email"], textarea, select { width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc; }
+nav { background-color: #dee2e6;
+       width: 100%; 
+       float: none;
+       padding: 10px 0;
+       margin-bottom: 20px;
+}
+nav ul { list-style-type: none; 
+       padding: 0;
+       margin: 0;
+       display: flex;       
+       gap: 30px;           
+       justify-content: center;
+	 }
+nav li { padding-bottom: 10px;
+       font-weight: bold;
+}
+nav a { text-decoration: none; }
+nav a:link { color: #395A7F; }
+nav a:visited{ color:  #395A7F; }
+nav a:hover { color: #FFFFFF; }
+
+.navbar a.active{
+       background-color: #395A7F;
+       color: #FFFFFF;
+}
+main { background-color: #FFFFFF;
+       margin-left: 0;
+       padding: 1px 20px 20px 20px;   
+       min-height: 300px;
+}
+
+main h2 {
+       color: #1F3D7A;
+       margin-top: 10px;
+}
+main img { float: right;
+       padding: 20px;
+       border-radius: 50px;
+}
+.room-image{ display: block;
+       float: none;
+       margin-left: auto;
+       margin-right: auto;
+       width: 80%;
+       max-width: 1000px;
+       padding-bottom: 20px;
+       border-radius: 50px;
+}
+
+
+footer { background-color: #FFFFFF;
+       margin-left: 0;
+       padding: 20px;
+       text-align: center;
+       font-size: small;
+       font-style: italic;
+}
+
+/* Navigation active state */
+nav a.active {
+       color: #FFFFFF;
+       background-color: #395A7F;
+       padding: 4px 8px;
+       border-radius: 4px;
+}
+
+/* Lightbox overlay */
+#lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; z-index: 1000; }
+#lightbox[aria-hidden="false"] { display: flex; }
+#lightbox img { max-width: 90%; max-height: 80%; border-radius: 6px; }
+#lightbox .controls { position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%); display: flex; justify-content: space-between; pointer-events: none; }
+#lightbox button.control { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: #fff; padding: 10px 14px; margin: 0 8px; border-radius: 4px; pointer-events: auto; }
+#lightbox button.close { position: absolute; top: 18px; right: 18px; background: rgba(255,255,255,0.08); color: #fff; border: 1px solid rgba(255,255,255,0.18); padding: 8px 10px; border-radius: 4px; }
+
+
+/* Table styles for room details and amenities */
+table.room-details, table.amenities { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+table.room-details caption { font-weight: bold; text-align: left; margin-bottom: 6px; }
+table.room-details th, table.room-details td, table.amenities th, table.amenities td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+table.room-details thead th { background-color: #f2f2f2; }
+table.amenities thead th { background-color: #f2f2f2; }
+
+@media (max-width: 600px) {
+       table.room-details, table.amenities { display: block; overflow-x: auto; white-space: nowrap; }
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  #wrapper { width: 95%; margin: 10px auto; }
+  nav { float: none; width: calc(100% - 40px); margin: 10px 20px; }
+  main { margin-left: 0; padding: 10px 15px; }
+  footer { margin-left: 0; }
+  main img, .room-image { float: none; display: block; margin: 10px auto; width: 90%; height: auto; }
+  body { background-attachment: scroll; }
+}
+.map-box {
+       flex: 1; 
+}
+iframe{
+       border-radius: 2em;
+       border: none;
+       width: 250px;
+       height: 250px;
+       opacity: 0.7;
+       transition: 0.3s ease-in-out;
+}
+iframe:hover{
+       transform: scale(1.1);
+       opacity: 1;
+}	  
