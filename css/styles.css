@@ -119,21 +119,87 @@ table.room-details th, table.room-details td, table.amenities th, table.amenitie
 table.room-details thead th { background-color: #f2f2f2; }
 table.amenities thead th { background-color: #f2f2f2; }
 
-#estimateForm { max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);}
+#estimateForm {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-#estimateForm label { display: block; margin-bottom: 8px; font-weight: bold; color: #1F3D7A;}
+#estimateForm label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #1F3D7A;
+}
 
-#estimateForm select, #estimateForm input[type="number"] { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px;}
+#estimateForm select, #estimateForm input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
 
 #estimateForm input[type="checkbox"] {
-	margin-right: 10px;
+  margin-right: 10px;
 }
 
 #estimateForm p {
-	font-size: 18px;
-	font-weight: bold;
-	color: #1F3D7A;
-	text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #1F3D7A;
+  text-align: center;
+}
+
+.review-list {
+  display: grid;
+  gap: 1.2rem;
+  margin-top: 20px;
+}
+
+.review-card {
+  background-color: #ffffff;
+  border: 1px solid #d7dae1;
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.review-card h3 {
+  margin: 0 0 10px 0;
+  color: #1F3D7A;
+}
+
+.review-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  color: #395A7F;
+  font-size: 0.95rem;
+}
+
+.review-type {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.review-rating {
+  color: #d18c24;
+  font-size: 1rem;
+}
+
+.review-text {
+       
+  margin: 0;
+  line-height: 1.6;
+  color: #354165;
 }
 
 @media (max-width: 600px) {
@@ -163,4 +229,4 @@ iframe{
 iframe:hover{
        transform: scale(1.1);
        opacity: 1;
-}	  
+}
