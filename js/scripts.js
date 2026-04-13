@@ -7,14 +7,46 @@ document.querySelectorAll('.navbar a').forEach(link => {
     link.classList.add('active');
   }
 });
+
 const SINGLE_COST = 119;  // Single bed nightly rate
 const DOUBLE_COST = 169;  // Double bed nightly rate
 const BREAKFAST_COST = 20; // Breakfast add-on per night
 const PARKING_COST = 10;   // Parking add-on per night
 const WIFI_COST = 5;       // Wi-Fi add-on per night
 
+// Review data arrays
+//The Silver Haven hotel review page.
+let reviewers = ["WillHa85", "GoldFry26", "Mittens41", "Tompkins8"];
+let reviewType = ["P", "N", "P", "P"];
+let stars = [5, 2, 4, 4];
+let reviewDates = ["11/18/2024", "11/17/2024", "11/15/2024", "11/10/2024"];
+let reviews = [
+  "The Silver Haven provided exceptional service and a cozy room. I have stayed at many hotels and this one is my new favorite.",
+  "The hotel grounds are lovely, but the spa booking process was confusing. I hope the staff improves the reservation system.",
+  "The room were so amazing and the Wi-Fi was great. I had a minor issue with the air conditioning, but the maintenance team was quick to resolve it.",
+  "The terrace view and breakfast buffet were fantastic. Still one of the best hotel stays in the area."
+];
+let reviewTitles = [
+  "Perfect stay at The Silver Haven",
+  "Nice hotel, but spa booking confusing",
+  "Great room and Wi-Fi, minor AC issue",
+  "Beautiful view and great breakfast"
+];
+
 // Setup form on load
-window.addEventListener("load", setupForm);
+window.addEventListener("load", setupPage);
+
+function setupPage() {
+  // Only initialize the estimate form on pages containing the form
+  if (document.getElementById("estimateForm")) {
+    setupForm();
+  }
+
+  // Only initialize reviews on the review page
+  if (document.getElementById("reviewSection")) {
+    setupReviews();
+  }
+}
 
 function setupForm() {
    document.getElementById("nights").value = 1;
@@ -23,8 +55,7 @@ function setupForm() {
    document.getElementById("wifi").checked = false;
    
    getEstimate();
-   
-   // Event handlers
+   // Add Event Handler 
    document.getElementById("roomType").onchange = getEstimate;
    document.getElementById("nights").onchange = getEstimate;
    document.getElementById("breakfast").onchange = getEstimate;
@@ -41,12 +72,44 @@ function getEstimate() {
    let addWifi = document.getElementById("wifi").checked;
    
    totalCost += roomRate * nights;
-   
-   // Add-ons per night
+
+   // Add-on costs per night
    totalCost += addBreakfast ? BREAKFAST_COST * nights : 0;
    totalCost += addParking ? PARKING_COST * nights : 0;
    totalCost += addWifi ? WIFI_COST * nights : 0;
    
-   // Display estimate
+   // Display the total cost in the estimate section
    document.getElementById("estimate").innerHTML = "$" + totalCost;
+}
+
+
+function setupReviews() {
+  const reviewSection = document.getElementById("reviewSection");
+  reviewSection.innerHTML = "";
+
+  for (let index = 0; index < reviewers.length; index++) {
+    // Create a string of stars based on the rating
+    const rating = "★".repeat(stars[index]) + "☆".repeat(5 - stars[index]);
+    // Convert review type code to a label
+    const typeLabel = reviewType[index] === "P"
+      ? "Positive"
+      : reviewType[index] === "N"
+      ? "Negative"
+      : "Neutral";
+
+    const reviewCard = document.createElement("article");
+    reviewCard.className = "review-card";
+
+    reviewCard.innerHTML = `
+      <table>
+        <caption>${reviewTitles[index]}</caption>
+        <tr><th>Review Type</th><td>${typeLabel}</td></tr>
+        <tr><th>By</th><td>${reviewers[index]}</td></tr>
+        <tr><th>Review Date</th><td>${reviewDates[index]}</td></tr>
+        <tr><th>Rating</th><td>${rating}</td></tr>
+        <tr><td colspan="2">${reviews[index]}</td></tr>
+      </table>
+    `;
+    reviewSection.appendChild(reviewCard);
+  }
 }
