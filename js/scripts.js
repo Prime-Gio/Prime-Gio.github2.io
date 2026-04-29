@@ -14,7 +14,6 @@ const BREAKFAST_COST = 20; // Breakfast add-on per night
 const PARKING_COST = 10;   // Parking add-on per night
 const WIFI_COST = 5;       // Wi-Fi add-on per night
 
-// Review data arrays
 //The Silver Haven hotel review page.
 let reviewers = ["WillHa85", "GoldFry26", "Mittens41", "Tompkins8"];
 let reviewType = ["P", "N", "P", "P"];
@@ -33,6 +32,22 @@ let reviewTitles = [
   "Beautiful view and great breakfast"
 ];
 
+// Added lightbox statments from the handson activity
+let imgFiles = ["images/Building.jpg", "images/Front_Entrance.jpg", "images/Front_Desk.jpg",
+                "images/Main_Lobby.jpg", "images/Hallway.jpg", "images/Single_Room_Shot.jpg",
+                "images/Room_Bathroom.jpg", "images/Pool.jpg"];
+// Captions associated with each image
+let imgCaptions = new Array(8);
+imgCaptions[0]="The exterior of the building";
+imgCaptions[1]="The front entrance of the building";
+imgCaptions[2]="The front desk of the building";
+imgCaptions[3]="The main lobby of the building";
+imgCaptions[4]="A hallway in the building";
+imgCaptions[5]="A single room in the building";
+imgCaptions[6]="The bathroom in a single room";
+imgCaptions[7]="The pool at the building";
+let imgCount = imgFiles.length;
+
 // Setup form on load
 window.addEventListener("load", setupPage);
 
@@ -45,6 +60,10 @@ function setupPage() {
   // Only initialize reviews on the review page
   if (document.getElementById("reviewSection")) {
     setupReviews();
+  }
+  // Initialize lightbox if on a page with it
+  if (document.getElementById("lightbox")) {
+    createLightbox();
   }
 }
 
@@ -112,4 +131,105 @@ function setupReviews() {
     `;
     reviewSection.appendChild(reviewCard);
   }
+}
+
+function createLightbox() {
+  // Lightbox Container
+   let lightBox = document.getElementById("lightbox");
+
+   // 1. Create a container for the controls (Counter + Buttons)
+   let lbControls = document.createElement("div");
+   lbControls.id = "lbControls";
+   lightBox.appendChild(lbControls);
+
+   let lbCounter = document.createElement("div");
+   let lbPrev = document.createElement("div");
+   let lbNext = document.createElement("div");
+   let lbPlay = document.createElement("div");
+   
+   // 2. Append the buttons to the control box
+   lbControls.appendChild(lbCounter);
+   lbControls.appendChild(lbPrev);
+   lbControls.appendChild(lbNext);
+   lbControls.appendChild(lbPlay);
+
+   // Counter Setup
+   lbCounter.id = "lbCounter"; 
+   let currentImg = 1;
+   lbCounter.textContent = currentImg + " / " + imgCount;
+
+   // Previous Button
+   lbPrev.id = "lbPrev"; 
+   lbPrev.innerHTML = "&#9664;";
+   lbPrev.onclick = showPrev;
+
+   // Next Button
+   lbNext.id = "lbNext";
+   lbNext.innerHTML = "&#9654;";
+   lbNext.onclick = showNext;
+
+   // Play Button
+   lbPlay.id = "lbPlay"; 
+   lbPlay.innerHTML = "&#9199;";
+   let timeID;
+   lbPlay.onclick = function() {
+      if (timeID) {
+         window.clearInterval(timeID);
+         timeID = undefined;
+      } else {
+         showNext();
+         timeID = window.setInterval(showNext, 1500);
+      }
+   }
+
+   // 3. Create the Image container and append it AFTER the controls
+   let lbImages = document.createElement("div");
+   lightBox.appendChild(lbImages);
+   lbImages.id = "lbImages";
+
+   for (let i = 0; i < imgCount; i++) {
+      let image = document.createElement("img");
+      image.src = imgFiles[i];
+      image.alt = imgCaptions[i];
+      image.onclick = createOverlay;
+      lbImages.appendChild(image);
+   }
+
+   // The function to show the next image in the lightbox
+   function showNext() {
+      lbImages.appendChild(lbImages.firstElementChild);
+      (currentImg < imgCount) ? currentImg++ : currentImg = 1;
+      lbCounter.textContent = currentImg + " / " + imgCount;
+   }
+   // The function to show the previous image in the lightbox
+   function showPrev() {
+      lbImages.insertBefore(lbImages.lastElementChild, lbImages.firstElementChild);
+      (currentImg > 1) ? currentImg-- : currentImg = imgCount;
+      lbCounter.textContent = currentImg + " / " + imgCount;
+   }
+   
+   function createOverlay() {
+      let overlay = document.createElement("div");
+      overlay.id = "lbOverlay";
+      // Add the image and caption to the overlay
+      let figureBox = document.createElement("figure");
+      overlay.appendChild(figureBox);
+      // Add the image to the figure box
+      let overlayImage = this.cloneNode("true");
+      figureBox.appendChild(overlayImage);
+      // Add the caption to the figure box
+      let overlayCaption = document.createElement("figcaption");
+      overlayCaption.textContent = this.alt;
+      figureBox.appendChild(overlayCaption);
+      // Add a close button to the overlay
+      let closeBox = document.createElement("div");
+      closeBox.id = "lbOverlayClose";
+      closeBox.innerHTML = "&times;";
+      closeBox.onclick = function() {
+         document.body.removeChild(overlay);
+      }      
+      overlay.appendChild(closeBox);
+      
+      document.body.appendChild(overlay);
+   }   
 }
