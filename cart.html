@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Silver Haven - Your Cart</title>
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+<body onload="renderCart()"> <div id="wrapper">
+  <header>
+      <h1>The Silver Haven</h1>
+  </header>
+  
+  <nav class="navbar">
+    <ul> 
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Back to Shop</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h2>Your Shopping Cart</h2>
+    <p>Review your items before proceeding to checkout.</p>
+    
+    <section id="cart-area"></section>
+
+    <div style="margin-top: 20px; font-size: 1.2em; text-align: right;">
+        <strong>Total Estimate: $</strong><span id="total-box">0.00</span>
+    </div>
+
+    <p style="text-align: center; margin-top: 30px;">
+      <a href="checkout.html" id="checkout-btn" style="font-weight: bold; color: #1F3D7A;">Proceed to Checkout</a>
+    </p>
+  </main>
+
+  <footer>
+    Copyright &copy; 2024 WebMaster
+  </footer>
+</div>
+
+<script src="js/scripts.js"></script>
+</body>
+</html>

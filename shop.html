@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The Silver Haven Gift Shop - Take a piece of comfort home with our signature robes, candles, and more.">
+  <title>The Silver Haven - Gift Shop</title>
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+<div id="wrapper">
+  <header>
+      <h1>The Silver Haven</h1>
+  </header>
+  
+  <nav class="navbar">
+    <ul> 
+      <li><a href="index.html">Home</a></li>
+      <li><a href="rooms/single_bed.html">Single Bed</a></li>
+      <li><a href="rooms/double_bed.html">Double Bed</a></li>
+      <li><a href="events/weekend_events.html">Weekend Events</a></li>
+      <li><a href="estimate.html">Estimate</a></li>
+      <li><a href="shop.html" class="active">Shop</a></li> 
+      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h2>Our Gift Shop</h2>
+    <p>Bring the tranquility of The Silver Haven home with you. Browse our curated collection of comfort-focused essentials.</p>
+    
+    <section class="shop-container">
+  
+  <article class="product-card">
+    <div class="product-image-section">
+      <img src="images/plush_robe.png" alt="Signature Plush Robe">
+    </div>
+    
+    <div class="product-info-section">
+      <h3>Signature Plush Robe</h3>
+      <p class="description">Ultra-soft microfiber fleece featuring our hotel logo. Perfect for a spa-like feel at home.</p>
+      
+      <div class="details-grid">
+        <span class="label">Price:</span>
+        <span class="price">$45.00</span>
+
+        <label for="size-1" class="label">Size:</label>
+        <select id="size-1">
+          <option value="Small">Small</option>
+          <option value="Medium">Medium</option>
+          <option value="Large">Large</option>
+          <option value="XL">Extra Large</option>
+        </select>
+
+        <label for="color-1" class="label">Color:</label>
+        <select id="color-1">
+          <option value="White">White</option>
+          <option value="Gray">Gray</option>
+          <option value="Black">Black</option>
+        </select>
+
+        <label for="qty-1" class="label">Quantity:</label>
+        <input type="number" id="qty-1" value="1" min="1">
+      </div>
+
+      <button type="button" class="add-to-cart" onclick="addToCart('Signature Plush Robe', 45.00, 1)">Add to Cart</button>
+    </div>
+  </article>
+
+  <article class="product-card">
+    <div class="product-image-section">
+      <img src="images/candle.png" alt="Golden Hour Soy Candle">
+    </div>
+    
+    <div class="product-info-section">
+      <h3>"Golden Hour" Soy Candle</h3>
+      <p class="description">Hand-poured soy candle with notes of sandalwood and amber. Captures the essence of our rooftop sunset.</p>
+      
+      <div class="details-grid">
+        <span class="label">Price:</span>
+        <span class="price">$22.00</span>
+
+        <label for="color-2" class="label">Container:</label>
+        <select id="color-2">
+          <option value="8oz Tin">8 oz Tin</option>
+          <option value="12oz Jar">12 oz Glass Jar</option>
+        </select>
+        <input type="hidden" id="size-2" value="Standard">
+
+        <label for="qty-2" class="label">Quantity:</label>
+        <input type="number" id="qty-2" value="1" min="1">
+      </div>
+
+      <button type="button" class="add-to-cart" onclick="addToCart('Golden Hour Candle', 22.00, 2)">Add to Cart</button>
+    </div>
+  </article>
+
+  <article class="product-card">
+    <div class="product-image-section">
+      <img src="images/coffee_mug.png" alt="Traveler Mug">
+    </div>
+    
+    <div class="product-info-section">
+      <h3>Traveler's Coffee Mug</h3>
+      <p class="description">Double-walled stainless steel to keep your morning coffee hot for 12 hours.</p>
+      
+      <div class="details-grid">
+        <span class="label">Price:</span>
+        <span class="price">$18.00</span>
+
+        <label for="color-3" class="label">Color:</label>
+        <select id="color-3">
+          <option value="Silver">Brushed Silver</option>
+          <option value="Black">Matte Black</option>
+          <option value="Green">Seafoam Green</option>
+        </select>
+        <input type="hidden" id="size-3" value="16oz">
+
+        <label for="qty-3" class="label">Quantity:</label>
+        <input type="number" id="qty-3" value="1" min="1">
+      </div>
+
+      <button type="button" class="add-to-cart" onclick="addToCart('Traveler Mug', 18.00, 3)">Add to Cart</button>
+    </div>
+  </article>
+
+  <article class="product-card">
+    <div class="product-image-section">
+      <img src="images/blanket.png" alt="Cozy Throw Blanket">
+    </div>
+    
+    <div class="product-info-section">
+      <h3>Cozy Rooftop Blanket</h3>
+      <p class="description">Our signature oversized sherpa-lined blanket. Essential for movie nights and chilly evenings.</p>
+      
+      <div class="details-grid">
+        <span class="label">Price:</span>
+        <span class="price">$35.00</span>
+
+        <label for="color-4" class="label">Pattern:</label>
+        <select id="color-4">
+          <option value="Herringbone">Herringbone</option>
+          <option value="Plaid">Classic Plaid</option>
+          <option value="Silver">Solid Silver</option>
+        </select>
+        <input type="hidden" id="size-4" value="Oversized">
+
+        <label for="qty-4" class="label">Quantity:</label>
+        <input type="number" id="qty-4" value="1" min="1">
+      </div>
+
+      <button type="button" class="add-to-cart" onclick="addToCart('Cozy Throw Blanket', 35.00, 4)">Add to Cart</button>
+    </div>
+  </article>
+
+  <article class="product-card">
+    <div class="product-image-section">
+      <img src="images/spa_kit.png" alt="Luxury Spa Kit">
+    </div>
+    
+    <div class="product-info-section">
+      <h3>Luxury Spa Kit</h3>
+      <p class="description">A curated set including lavender bath salts, organic body wash, and a natural loofah.</p>
+      
+      <div class="details-grid">
+        <span class="label">Price:</span>
+        <span class="price">$28.00</span>
+
+        <label for="color-5" class="label">Scent:</label>
+        <select id="color-5">
+          <option value="Lavender">Lavender & Mint</option>
+          <option value="Eucalyptus">Eucalyptus & Tea Tree</option>
+        </select>
+        <input type="hidden" id="size-5" value="Travel Kit">
+
+        <label for="qty-5" class="label">Quantity:</label>
+        <input type="number" id="qty-5" value="1" min="1">
+      </div>
+
+      <button type="button" class="add-to-cart" onclick="addToCart('Luxury Spa Kit', 28.00, 5)">Add to Cart</button>
+    </div>
+  </article>
+
+</section>
+
+    <p style="text-align: center; margin-top: 30px;">
+      <a href="cart.html" style="font-weight: bold; color: #1F3D7A;">View Your Cart</a>
+    </p>
+
+  </main>
+
+  <footer>
+    Copyright &copy; 2024 WebMaster<br>
+    <a href="mailto:pgaguilar21@amarillocollege.com">Pedro Aguilar</a>
+    <div>
+      <script>
+        document.write("This page was last modified on: " + document.lastModified)
+      </script>
+    </div>
+  </footer>
+</div>
+
+<script src="js/scripts.js"></script>
+</body>
+</html>
