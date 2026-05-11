@@ -571,3 +571,12 @@ textarea {
         grid-template-columns: 1fr;
     }
 }
+
+#map {
+   height: 250px; 
+   width: 300px;
+   border: 10px solid white; 
+   border-radius: 15px;
+   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+   outline: 1px solid #ccc;
+}
