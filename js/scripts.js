@@ -52,18 +52,14 @@ let imgCount = imgFiles.length;
 window.addEventListener("load", setupPage);
 
 function setupPage() {
-  // Only initialize the estimate form on pages containing the form
-  if (document.getElementById("estimateForm")) {
-    setupForm();
-  }
+  // Existing logic...
+  if (document.getElementById("estimateForm")) { setupForm(); }
+  if (document.getElementById("reviewSection")) { setupReviews(); }
+  if (document.getElementById("lightbox")) { createLightbox(); }
 
-  // Only initialize reviews on the review page
-  if (document.getElementById("reviewSection")) {
-    setupReviews();
-  }
-  // Initialize lightbox if on a page with it
-  if (document.getElementById("lightbox")) {
-    createLightbox();
+  // New: Initialize map if the map div exists
+  if (document.getElementById("map")) {
+    initContactMap();
   }
 }
 
@@ -454,4 +450,31 @@ function submitShippingForm(event) {
     localStorage.removeItem('haven_cart');
     event.target.reset();
     displayShippingPage();
+}
+
+function initContactMap() {
+
+  var lat = 40.7128; 
+  var lon = -74.0060;
+
+  // 1. Initialize Leaflet Map
+  var map = L.map('map').setView([lat, lon], 13);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+  // 2. Add Marker for The Silver Haven
+  const marker = L.marker([lat, lon]).addTo(map);
+  marker.bindPopup("<b>The Silver Haven</b><br>Loading current weather...").openPopup();
+
+  // 3. Fetch Weather from National Weather Service
+  fetch(`https://api.weather.gov/points/${lat},${lon}`)
+    .then(res => res.json())
+    .then(data => fetch(data.properties.forecast))
+    .then(res => res.json())
+    .then(weather => {
+      const current = weather.properties.periods[0];
+      marker.setPopupContent(`<b>The Silver Haven</b><br>${current.temperature}°F and ${current.shortForecast}`);
+    })
+    .catch(() => {
+      marker.setPopupContent("<b>The Silver Haven</b><br>Weather currently unavailable");
+    });
 }
